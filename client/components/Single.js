@@ -7,13 +7,14 @@ const Single = React.createClass({
   render() {
     const posts = this.props.posts
     const postId = this.props.params.postId
-    const i = posts.findIndex((post) => post.code === postId)
+    const i = posts.findIndex((post) => post._id === postId)
     const post = posts[i]
 
     return (
       <div className="single-photo">
         <Photo post={post} i={i} {...this.props} />
         <Comments commentss={this.props.comments[postId]} {...this.props}/>
+        {/* TODO: fix comments */}
       </div>
     )
   }

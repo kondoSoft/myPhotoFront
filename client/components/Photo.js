@@ -10,8 +10,8 @@ const Photo = React.createClass({
     return(
       <figure className='grid-figure'>
         <div className='grid-photo-wrap'>
-          <Link to={`/view/${post.code}`}>
-            <img className='grid-photo' src={post.display_src} alt={post.caption} />
+          <Link to={`/view/${post._id}`}>
+            <img className='grid-photo' src={post.url} alt={post.title} />
           </Link>
 
           <CSSTransitionGroup
@@ -23,7 +23,7 @@ const Photo = React.createClass({
           </CSSTransitionGroup>
 
           <figcaption>
-            <p>{post.caption}</p>
+            <p>{post.title}</p>
             <div className='control-buttons'>
               <button onClick={this.props.increment.bind(null, index)}
                className="likes">&hearts; {post.likes}</button>

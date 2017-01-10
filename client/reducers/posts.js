@@ -1,7 +1,7 @@
 // posts reducers
 // import fetch from 'isomorphic-fetch' ASYNC FETCH
-
 const posts  = (state = [], action)=>{
+  var newState
   const index = action.index
   switch (action.type) {
     case 'INCREMENT_LIKES':
@@ -11,11 +11,11 @@ const posts  = (state = [], action)=>{
         ...state.slice(index +1)
       ]
       break;
-    case 'FETCH_ALL_IMAGES':
-      console.log('fetching images');
-      return[]
-
-      break;
+    case 'LOAD_PHOTOS':
+    console.log('load photos');
+    console.log(action);
+      return action.photosAry
+      
     default:
       return state
 

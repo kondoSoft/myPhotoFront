@@ -2,14 +2,20 @@
 
 
 //saga integration test
-export function fetchPhotos(action){
-  console.log('fetchin');
+export function fetchPhotos(apiURL){
   return {
     type: 'FETCH_ALL_IMAGES',
-    action
+    apiURL,
   }
 }
 // TODO: separate it bi data time
+
+//load photos to state
+export function loadPhotos(){
+  return {
+    type: 'LOAD_PHOTOS'
+  }
+}
 
 export function increment(index){
   return {

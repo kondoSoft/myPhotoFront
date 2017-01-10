@@ -7,7 +7,7 @@ import 'babel-polyfill'
 
 
 import rootReducer from './reducers/index'
-import fetchPhotosSaga from './sagas/sagas'
+import mySaga from './sagas/sagas'
 
 import comments from './data/comments'
 import posts from './data/posts'
@@ -21,19 +21,22 @@ const defaultState = {
 const sagaMiddleware = createSagaMiddleware()
 
 const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
+  applyMiddleware(sagaMiddleware)
 )
 
+// TODO: fix enhancers, so it can run both devToolsExtension and Sagas
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
-// const store = createStore(rootReducer, defaultState)
-sagaMiddleware.run(fetchPhotosSaga)
+// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+const store = createStore(rootReducer, defaultState, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(mySaga)
 export const history = syncHistoryWithStore(browserHistory, store)
 
-// if(module.hot){
-//   module.hot.accept('./reducers/', ()=>{
-//     const nextRootReducer = require('./reducers/index').default;
-//     store.replaceReducer(nextRootReducer)
-//   })
-// }
+if(module.hot){
+  module.hot.accept('./reducers/', ()=>{
+    const nextRootReducer = require('./reducers/index').default;
+    store.replaceReducer(nextRootReducer)
+  })
+
+}
 export default store;
