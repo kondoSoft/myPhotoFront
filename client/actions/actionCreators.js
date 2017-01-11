@@ -10,6 +10,12 @@ export function fetchPhotos(apiURL){
 }
 // TODO: separate it bi data time
 
+export function uploadPhotos(filesAry){
+  return {
+    type: 'UPLOAD_PHOTOS',
+    filesAry
+  }
+}
 //load photos to state
 export function loadPhotos(){
   return {

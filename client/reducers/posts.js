@@ -12,10 +12,11 @@ const posts  = (state = [], action)=>{
       ]
       break;
     case 'LOAD_PHOTOS':
-    console.log('load photos');
-    console.log(action);
       return action.photosAry
-      
+    case 'UPLOAD_PHOTOS':
+      console.log(action);
+      return state
+
     default:
       return state
 

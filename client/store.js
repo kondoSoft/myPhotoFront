@@ -16,7 +16,8 @@ import posts from './data/posts'
 // create an object for the default data
 const defaultState = {
   posts,
-  comments
+  comments,
+  uploadingFiles:[]
 }
 const sagaMiddleware = createSagaMiddleware()
 
